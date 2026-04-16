@@ -1,0 +1,42 @@
+import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
+  Future signInAnon() async {
+    await FirebaseAuth.instance.signInAnonymously();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+
+            const Text(
+              "SAMAQ MANGA",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+
+            const SizedBox(height: 30),
+
+            ElevatedButton(
+              onPressed: () {
+                signInAnon();
+              },
+              child: const Text("Enter as Guest"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
