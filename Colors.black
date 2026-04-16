@@ -1,0 +1,104 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const SAMAQApp());
+}
+
+class SAMAQApp extends StatelessWidget {
+  const SAMAQApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'SAMAQ MANGA',
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: Colors.black,
+      ),
+      home: const LoginPage(),
+    );
+  }
+}
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "SAMAQ MANGA",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 30),
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const HomePage(),
+                  ),
+                );
+              },
+              child: const Text("Enter App"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("SAMAQ MANGA"),
+        centerTitle: true,
+        backgroundColor: Colors.black,
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(12),
+        children: const [
+          MangaCard(title: "Shadow Blade"),
+          MangaCard(title: "Night Hunters"),
+          MangaCard(title: "Zero Code"),
+        ],
+      ),
+    );
+  }
+}
+
+class MangaCard extends StatelessWidget {
+  final String title;
+
+  const MangaCard({super.key, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Color(0xFF111111),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Text(
+        title,
+        style: const TextStyle(color: Colors.white, fontSize: 18),
+      ),
+    );
+  }
+}
